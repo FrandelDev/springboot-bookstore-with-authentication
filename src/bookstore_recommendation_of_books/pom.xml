@@ -8,11 +8,11 @@
 		<version>3.2.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com</groupId>
+	<groupId>com.bookstore_recommendation_of_books</groupId>
 	<artifactId>bookstore_recommendation_of_books</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>bookstore_recomendation_of_books</name>
-	<description>microservice for recomend books based on customers interest.</description>
+	<name>bookstore_recommendation_of_books</name>
+	<description>microservice for recommend books based on customers interest.&lt;</description>
 	<properties>
 		<java.version>21</java.version>
 	</properties>

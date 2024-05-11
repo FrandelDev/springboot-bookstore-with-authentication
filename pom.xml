@@ -15,7 +15,7 @@
     </properties>
 
     <modules>
-        <module>bookstore</module>
-        <module>bookstore_recommendation_of_books</module>
+        <module>src/bookstore</module>
+        <module>src/bookstore_recommendation_of_books</module>
     </modules>
 </project>
