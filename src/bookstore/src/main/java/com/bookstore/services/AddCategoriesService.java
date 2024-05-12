@@ -10,7 +10,7 @@ import java.util.*;
 @Service
 public class AddCategoriesService {
 
-    private static int chances = 10;
+    private static int chances = 20;
     private static final RestTemplate restTemplate = new RestTemplate();
 
 

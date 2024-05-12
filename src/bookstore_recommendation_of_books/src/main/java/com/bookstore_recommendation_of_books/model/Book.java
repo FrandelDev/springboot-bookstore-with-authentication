@@ -22,95 +22,100 @@ public class Book {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public Optional<String> getSubtitle() {
         return subtitle;
     }
 
-    public void setSubtitle(Optional<String> subtitle) {
-        this.subtitle = subtitle;
-    }
-
     public String getDescription() {
         return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getAuthors() {
         return authors;
     }
 
-    public void setAuthors(String authors) {
-        this.authors = authors;
+    public String getPublisher() {
+        return publisher;
     }
 
     public Integer getPages() {
         return pages;
     }
 
-    public void setPages(Integer pages) {
-        this.pages = pages;
-    }
-
-    public String getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(String publisher) {
-        this.publisher = publisher;
-    }
-
     public Integer getYear() {
         return year;
-    }
-
-    public void setYear(Integer year) {
-        this.year = year;
     }
 
     public String getImage() {
         return image;
     }
 
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public Double getPrice() {
         return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
     }
 
     public Double getPriceWithDiscount() {
         return priceWithDiscount;
     }
 
-    public void setPriceWithDiscount(Double priceWithDiscount) {
-        this.priceWithDiscount = priceWithDiscount;
-    }
-
     public List<String> getCategories() {
         return categories;
     }
 
-    public void setCategories(List<String> categories) {
+
+    public Book id(String id){
+        this.id = id;
+        return this;
+    }
+    public Book title(String title){
+        this.title = title;
+        return this;
+    }
+    public Book subtitle(Optional<String> subtitle){
+        this.subtitle = subtitle;
+        return this;
+    }
+    public Book description(String description){
+        this.description = description;
+        return this;
+    }
+    public Book authors(String authors){
+        this.authors = authors;
+        return this;
+    }
+    public Book publisher(String publisher){
+        this.publisher = publisher;
+        return this;
+    }
+    public Book pages(Integer pages){
+        this.pages = pages;
+        return this;
+    }
+    public Book year(Integer year){
+        this.year = year;
+        return this;
+    }
+    public Book image(String image){
+        this.image = image;
+        return this;
+    }
+    public Book price(Double price){
+        this.price = price;
+        return this;
+    }
+    public Book priceWithDiscount(Double priceWithDiscount){
+        this.priceWithDiscount = priceWithDiscount;
+        return this;
+    }
+    public Book categories(List<String> categories){
         this.categories = categories;
+        return this;
+    }
+    public Book build(){
+        return this;
     }
 }

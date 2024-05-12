@@ -1,22 +1,52 @@
 package com.bookstore_recommendation_of_books.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
+import com.bookstore_recommendation_of_books.model.Book;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 
 @Service
 public class RecommendBooksService {
 
-    private static RestTemplate template = new RestTemplate();
+    private static final RestTemplate template = new RestTemplate();
 
 
 
-    public static void recommendedBooksAndApplyDiscounts(){
+    public static List<Book> recommendedBooksAndApplyDiscounts(){
 
+        List<String> booksId = getBooksIdToRecommend();
+        List<Book> booksToRecommend = new ArrayList<>();
+        for (String id : booksId) {
+                StringBuilder purifierId = new StringBuilder(id);
+            if (id.charAt(id.length() - 1) == 'X') {
+                purifierId.deleteCharAt(purifierId.length() - 1);
+            }
 
+            Map<String,Object> searchBook = template.getForObject("https://www.dbooks.org/api/book/"+purifierId,Map.class);
+            Book newBook = new Book();
+            newBook
+                    .id(purifierId.toString())
+                    .title(searchBook.get("title").toString())
+                    .subtitle(Optional.of(searchBook.get("subtitle").toString()))
+                    .description(searchBook.get("description").toString())
+                    .authors(searchBook.get("authors").toString())
+                    .publisher(searchBook.get("publisher").toString())
+                    .pages(Integer.valueOf(searchBook.get("pages").toString()))
+                    .year(Integer.valueOf(searchBook.get("year").toString()))
+                    .image(searchBook.get("image").toString())
+                    .price(Math.round(new Random().nextDouble(15.00,50.99)*100.0)/100.0)
+                    .priceWithDiscount(Math.round((newBook.getPrice()-(newBook.getPrice()*10)/100)*100d)/100d)
+                    .categories((List<String>) template.getForObject("http://localhost:8383/api/bookstore/get-categories?bookTitle="+newBook.getTitle(),List.class))
+                    .build();
+
+            booksToRecommend.add(newBook);
+
+        }
+     return booksToRecommend;
     }
 
     public static List<String> getBooksIdToRecommend(){
