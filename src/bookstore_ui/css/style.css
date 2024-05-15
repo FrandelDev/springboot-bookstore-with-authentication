@@ -65,21 +65,23 @@
     color: #fff;
     cursor: pointer;
 }
-#total{
+#totals{
     position: absolute;
     bottom: 106px;
+    left: 0;
     background: #fff;
     width: 100%;
     height: fit-content;
-    padding: 10px;
-    font-size: 12px;
+    padding: 15px;
+    font-size: 14px;
 }
-#total p{
-    margin: 0;
+#totals #total-discount, #subtotal{
+    display: none;
 }
-#total p:nth-child(2) b{
-    color: red;
+#totals p{
+    margin-bottom: 0;
 }
+
 #shopping-cart{
     display: flex;
     flex-direction: column;
@@ -91,13 +93,12 @@
 #shopping-cart::-webkit-scrollbar {
     display: none;
 }
-#book-in-cart{
-    padding: var(--bs-card-spacer-y) 0;
+#shopping-cart .book-in-cart{
     margin-bottom: 10px;
     padding-bottom: 0;
     height: fit-content;
 }
-#book-in-cart::after{
+#shopping-cart .book-in-cart::after{
     content: '↺';
     display: flex;
     place-content: center;
@@ -110,17 +111,28 @@
     color: #fff;
     cursor: pointer;
 }
-#book-in-cart .card-body{
+#shopping-cart .book-in-cart .card-body{
     padding: 5px 0;
 }
-#book-in-cart .card-body p{
+#shopping-cart .book-in-cart .card-body p{
     margin-bottom: 0px;
 
 }
-#book-in-cart,#book-in-cart h6{
+#shopping-cart .book-in-cart,.book-in-cart h6{
     font-size: small;
 }
-
+#shopping-cart .book-with-discount .card-body .card-text:nth-child(2){
+    font-size: 11px;
+    text-decoration-line:line-through;
+    text-decoration-color: red;
+    text-decoration-thickness: 2px;
+}
+#shopping-cart #placeHolderCart{
+    position: absolute;
+    left: 30%;
+    bottom: 45%;
+   color: #a3a3a3;
+}
 #Recommended{
     position: absolute;
     top: 0;

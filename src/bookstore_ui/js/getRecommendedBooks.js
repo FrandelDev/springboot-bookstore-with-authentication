@@ -1,3 +1,5 @@
+import { myBooks } from "./getMyBooks.js";
+
 const url = "http://localhost:8384/get-recommended-books/";
 let recommendedBooks;
 async function getRecommendedBooks(){
@@ -21,5 +23,7 @@ async function getRecommendedBooks(){
         console.error('Error:', error);
     }
 }
+
+
 
 export {getRecommendedBooks,recommendedBooks}

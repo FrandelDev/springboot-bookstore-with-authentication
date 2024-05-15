@@ -1,4 +1,5 @@
 import { recentBooks } from "./GetRecentBooks.js";
+import { items } from "./index.js";
 import { myBooks } from "./getMyBooks.js";
 
 const bookInfoCard = document.querySelector("#book-info");
@@ -13,17 +14,16 @@ const image = document.querySelector("#image");
 const categories = document.querySelector("#categories");
 const close = document.querySelector(".close");
 
-
+let bookSelected;
 
 function bookInfo(event) {
 
-    const findInRecentBooks = recentBooks.find(book => book.id == event.currentTarget.id);
+    const findInItems = items.find(book => book.id == event.currentTarget.id);
     const findInMyBooks = myBooks?.find(book => book.id == event.currentTarget.id);
 
 
-
-    if (findInRecentBooks) {
-        fillAllFields(findInRecentBooks);
+    if (findInItems) {
+        fillAllFields(findInItems);
         return;
     }
     else if (findInMyBooks) {
@@ -35,6 +35,7 @@ function bookInfo(event) {
     }
 }
 function fillAllFields(source) {
+    bookSelected = source;
     title.innerText = source.title;
     subtitle.innerText = source.subtitle;
     description.innerText =  source.description;
@@ -60,4 +61,4 @@ function categoriesRender(categoriesSource) {
     });
 }
 
-export { bookInfo }
+export { bookInfo,bookSelected }

@@ -1,5 +1,5 @@
 import { booksRender } from "./booksRender.js";
-import { recentBooks } from "./GetRecentBooks.js";
+import { items } from "./index.js";
 
 const tabMyBooks = document.querySelector("#tab-my-books");
 const tabRecent = document.querySelector("#tab-recent");
@@ -10,7 +10,7 @@ function backToRecentBooks(){
     tabRecent.classList.toggle('active');
     tabMyBooks.classList.remove('active');
     tabMyBooks.classList.add('text-success');
-    booksRender(recentBooks);
+    booksRender(items);
 }
 
 export {backToRecentBooks}

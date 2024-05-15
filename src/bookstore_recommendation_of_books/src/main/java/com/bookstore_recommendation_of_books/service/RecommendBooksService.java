@@ -68,9 +68,9 @@ public class RecommendBooksService {
 
     public static String[]  peekCategories(){
         var categories = getBooksCategories();
-        String[] categoriesForSearchCriteria = new String[7];
+        String[] categoriesForSearchCriteria = new String[8];
 
-        for (int i = 6; i >= 0; i--){
+        for (int i = 7; i >= 0; i--){
             int categoryIndex = new Random().nextInt(0,categories.toArray().length);
             categoriesForSearchCriteria[i] = categories.get(categoryIndex);
         }

@@ -51,59 +51,23 @@
                         
                     </div>
                     <button id="toBuy" class="btn btn-success"><b>I want it ▸</b></button>
-                    <div class="close">⨉</div>
+                    <div class="close" style="user-select: none;">⨉</div>
                 </div>
             </div>
         </div>
     </div>
     <section class="row row-cols-1 row-cols-md-4 g-4" style="width: 85%;" id="books">
-
-        
-        <div class="col">
-            <div class="card recommended-book" style="width: 13.5rem;">
-                <img src="https://www.dbooks.org/img/books/5679752518s.jpg" class="card-img-top" alt="...">
-                <div class="card-body d-flex flex-column text-center">
-                    <div id="Recommended">Recommended</div>
-                    <h6 class="card-title lh-sm">Managing Cloud Native Data on Kubernetes</h6>
-                    <p class="card-text lh-sm" id="discount"><b>$50.99</b></p>
-                    <p class="card-text lh-sm"><b>$50.99</b></p>
-                </div>
-            </div>
-        </div>
-        
     </section>
 
     <section id="shopping-cart-container" style="width: 17%">
-        <div id="shopping-cart" class="">
-            <div id="book-in-cart" class="card" style="width: 8rem;">
-                <img src="https://www.dbooks.org/img/books/5679752518s.jpg" class="card-img-top" alt="...">
-                <div class="card-body text-center" ">
-              <h6 class=" card-title lh-sm">Managing Cloud Native Data on Kubernetes</h6>
-                    <p class="card-text lh-sm"><b>$50.99</b></p>
-                    <p class="card-text"><b>$50.99</b></p>
-                </div>
-            </div>
-            <div id="book-in-cart" class="card" style="width: 8rem;">
-                <img src="https://www.dbooks.org/img/books/5679752518s.jpg" class="card-img-top" alt="...">
-                <div class="card-body text-center" ">
-              <h6 class=" card-title lh-sm">Managing Cloud Native Data on Kubernetes</h6>
-                    <p class="card-text lh-sm"><b>$50.99</b></p>
-                    <p class="card-text"><b>$50.99</b></p>
-                </div>
-            </div>
-            <div id="book-in-cart" class="card" style="width: 8rem;">
-                <img src="https://www.dbooks.org/img/books/5679752518s.jpg" class="card-img-top" alt="...">
-                <div class="card-body text-center" ">
-              <h6 class=" card-title lh-sm">Managing Cloud Native Data on Kubernetes</h6>
-                    <p class="card-text lh-sm"><b>$50.99</b></p>
-                    <p class="card-text"><b>$50.99</b></p>
-                </div>
-            </div>
-        </div>
-        <div id="total">
-            <p><b>Subtotal: </b>$100</p>
-            <p><b>-10%: </b>$10</p>
-            <p><b>Total: </b>$90</p>
+
+        <div id="shopping-cart">
+           <p id="placeHolderCart">Empty Cart</p>
+            
+        <div id="totals">
+            <p id="subtotal"></p>
+            <p id="total-discount"></p>
+            <p id="total-to-pay"><b>Total: </b>$0.00</p>
         </div>
     </section>
 
