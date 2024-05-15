@@ -2,12 +2,14 @@ package com.bookstore_recommendation_of_books.controller;
 
 import com.bookstore_recommendation_of_books.model.Book;
 import com.bookstore_recommendation_of_books.service.RecommendBooksService;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @RestController()
+@CrossOrigin
 public class RecommendedBooksController {
 
     @GetMapping()

@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Random;
 
 @RestController
+@CrossOrigin
 public class BookController {
     @Autowired
     private @Qualifier("databaseService") BookRepository bookRepository;

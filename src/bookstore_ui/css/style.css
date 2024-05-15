@@ -28,9 +28,17 @@
     padding-top: 40px;
     justify-content: center;
 }
-#tabs li:nth-child(2) a{
+#tabs li a{
+    isolation: isolate;
+    border-color: var(--bs-nav-tabs-link-hover-border-color);
     border-width: 1.5px;
     border-bottom: none;
+}
+#tabs li a:hover{
+    background-color: rgba(150, 160, 155, 0.082);
+}
+#books .card{
+ cursor: pointer;   
 }
 #shopping-cart-container{
     position: fixed;
@@ -138,7 +146,6 @@
     text-decoration-thickness: 1.6px;
 }
 
-
 #discount::after{
 content: '-10%';
 position: absolute;
@@ -148,4 +155,66 @@ padding: 5px;
 font-size: 12px;
 font-weight: bolder;
 color: red;
+}
+
+#book-info{
+    position: fixed;
+    left: 150px;
+    top: 200px;
+    visibility: hidden;
+    width: 700px;
+    padding: 15px;
+    padding-right: 0;
+    height: fit-content;
+    z-index: 4;
+}
+#book-info #image-container{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+#book-info #image-container #image{
+    height: 250px;
+    margin-bottom: 15px;
+}
+#book-info #image-container span:nth-child(1){
+    position: absolute;
+    right: 0;
+}
+#book-info #toBuy{
+    position: absolute;
+    right: 15px;
+    bottom: 20px;
+}
+#book-info #categories{
+    position: absolute;
+    bottom: 10px;
+    width: 360px;
+    padding: 10px;
+    overflow-x: auto;
+    white-space: nowrap;
+    scrollbar-width: thin;
+}
+#book-info #categories span{
+    margin-right: 5px;
+}
+#book-info .card-body{
+    height: 240px;
+    overflow-y: scroll;
+}
+#book-info .card-body p:nth-child(3){
+    margin: 0;
+}
+#book-info #description{
+    margin-bottom: 15px;
+}
+
+.close{
+    position: absolute;
+    right: 15px;
+    top: 0px;
+    font-size: larger;
+    font-weight: bolder;
+    cursor: pointer;
 }
