@@ -40,7 +40,8 @@ function addToCart() {
         totalDiscount.innerHTML = "<b>Saved: </b>$" + totals.totalDiscount.toFixed(2);
     }
     else {
-        totals.subtotal += bookSelected.price
+        totals.subtotal += bookSelected.price;
+        subtotal.innerHTML = "<b>Subtotal: </b>$" + totals.subtotal.toFixed(2);
         shoppingCart.insertAdjacentHTML('afterbegin', `
             <div id="${bookSelected.id}" class="card book-in-cart" style="width: 8rem;">
                 <img src="${bookSelected.image}" class="card-img-top" alt="...">
