@@ -49,10 +49,10 @@
     float: right;
 }
 
-#shopping-cart-container::after{
-    content: 'Buy';
+#buy{
     position: absolute;
     bottom: 69px;
+    left: 0;
     display: flex;
     place-content: center;
     place-items: center;
@@ -63,7 +63,7 @@
     font-size: 20px;
     background-color: #1db56e;
     color: #fff;
-    cursor: pointer;
+    border: none;
 }
 #totals{
     position: absolute;

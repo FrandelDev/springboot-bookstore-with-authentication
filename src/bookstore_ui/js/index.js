@@ -4,7 +4,8 @@ import { backToRecentBooks } from "./backToRecentBooks.js";
 import { getMyBooks,myBooks } from "./getMyBooks.js";
 import { getRecommendedBooks,recommendedBooks } from "./getRecommendedBooks.js";
 import { bookInfo } from "./bookInfo.js";
-import { addToCart } from "./addToCart.js";
+import { addToCart,cart} from "./addToCart.js";
+import { postBooks } from "./postBooks.js";
 
 await getRecentBooks();
 await getRecommendedBooks();

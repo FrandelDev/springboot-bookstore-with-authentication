@@ -1,5 +1,5 @@
 CREATE TABLE BOOKS (
-id BIGINT UNSIGNED PRIMARY KEY,
+id varchar(10) PRIMARY KEY,
 title TEXT,
 subtitle TEXT,
 description TEXT,
