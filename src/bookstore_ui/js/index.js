@@ -8,6 +8,7 @@ import { bookInfo } from "./bookInfo.js";
 import { addToCart,cart} from "./addToCart.js";
 import { postBooks } from "./postBooks.js";
 import { removeOwnedBooks } from "./removeOwnedBooks.js";
+import { searchBooks } from "./searchBooks.js";
 
 let instance = null;
 

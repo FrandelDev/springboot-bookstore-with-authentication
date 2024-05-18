@@ -1,6 +1,7 @@
 import { recentBooks } from "./GetRecentBooks.js";
 import { items } from "./index.js";
 import { myBooks } from "./getMyBooks.js";
+import { itemsFromSearch } from "./searchBooks.js";
 
 const bookInfoCard = document.querySelector("#book-info");
 const title = document.querySelector("#title");
@@ -20,6 +21,7 @@ function bookInfo(event) {
 
     const findInItems = items.data.find(book => book.id == event.currentTarget.id);
     const findInMyBooks = myBooks?.find(book => book.id == event.currentTarget.id);
+    const findInItemFromSearch = itemsFromSearch?.find(book => book.id == event.currentTarget.id);
 
 
     if (findInItems) {
@@ -28,6 +30,10 @@ function bookInfo(event) {
     }
     else if (findInMyBooks) {
         fillAllFields(findInMyBooks);
+        return;
+    }
+    else if(findInItemFromSearch){
+        fillAllFields(findInItemFromSearch);
         return;
     }
     else{
