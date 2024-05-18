@@ -18,7 +18,7 @@ let bookSelected;
 
 function bookInfo(event) {
 
-    const findInItems = items.find(book => book.id == event.currentTarget.id);
+    const findInItems = items.data.find(book => book.id == event.currentTarget.id);
     const findInMyBooks = myBooks?.find(book => book.id == event.currentTarget.id);
 
 

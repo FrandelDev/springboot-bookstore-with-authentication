@@ -5,11 +5,11 @@ const booksSection = document.querySelector("#books");
 
 
 function booksRender(RequiredBooksList){
-    booksSection.innerHTML = ''
+    booksSection.innerHTML = '';
     RequiredBooksList.forEach(book =>{
         if(book.priceWithDiscount){
             booksSection.innerHTML += `
-            <div class="col">
+            <div id="col-${book.id}" class="col">
             <div id="${book.id}" class="card recommended-book" style="width: 13.5rem;">
                 <img src="${book.image}" class="card-img-top" alt="...">
                 <div class="card-body d-flex flex-column text-center">
@@ -24,7 +24,7 @@ function booksRender(RequiredBooksList){
         }
         else{
             booksSection.innerHTML += `
-        <div class="col">
+        <div id="col-${book.id}" class="col">
             <div id="${book.id}" class="card" style="width: 13.5rem;">
                 <img src="${book.image}" class="card-img-top" alt="...">
                 <div class="card-body d-flex flex-column text-center">
@@ -38,7 +38,7 @@ function booksRender(RequiredBooksList){
     });
     document.querySelectorAll('.card').forEach(card =>{
         card.addEventListener('click',bookInfo)
-    })
+    });
 }
 
 export {booksRender}
