@@ -19,7 +19,7 @@ let totals = {
 
 toBuy.addEventListener('click', addToCart)
 function addToCart() {
-
+    toBuy.style.visibility = 'hidden';
     placeHolderCart.style.visibility = 'hidden';
     cart.push(bookSelected);
     if (bookSelected.priceWithDiscount) {

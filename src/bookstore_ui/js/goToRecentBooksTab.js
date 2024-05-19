@@ -4,6 +4,8 @@ import { Singleton } from "./index.js";
 
 const tabMyBooks = document.querySelector("#tab-my-books");
 const tabRecent = document.querySelector("#tab-recent");
+const close = document.querySelector(".close");
+const toBuy = document.querySelector("#toBuy");
 
 tabRecent.addEventListener('click',goToRecentBooks)
 async function goToRecentBooks(){

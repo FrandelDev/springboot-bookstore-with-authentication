@@ -33,8 +33,8 @@ class Singleton {
 
 await getRecommendedBooks();
 await getRecentBooks();
-const mibooks = await getMyBooks();
-console.log(mibooks);
+await getMyBooks();
+
 let allBooks = []
 allBooks.push(...recentBooks);
 allBooks.push(...recommendedBooks);

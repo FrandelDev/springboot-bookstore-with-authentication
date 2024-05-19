@@ -20,6 +20,7 @@ async function getMyBooks(){
             throw new Error(error.message);
         } else {
             const data = await res.json();
+            myBooks = data;
             return data.reverse();
         }
     } catch (error) {

@@ -14,11 +14,12 @@ const pages = document.querySelector("#pages");
 const image = document.querySelector("#image");
 const categories = document.querySelector("#categories");
 const close = document.querySelector(".close");
+const toBuy = document.querySelector("#toBuy");
 
 let bookSelected;
 
 function bookInfo(event) {
-
+    
     const findInItems = items.data.find(book => book.id == event.currentTarget.id);
     const findInMyBooks = myBooks?.find(book => book.id == event.currentTarget.id);
     const findInItemFromSearch = itemsFromSearch?.find(book => book.id == event.currentTarget.id);
@@ -29,7 +30,7 @@ function bookInfo(event) {
         return;
     }
     else if (findInMyBooks) {
-        fillAllFields(findInMyBooks);
+        fillAllFields(findInMyBooks,true);
         return;
     }
     else if(findInItemFromSearch){
@@ -37,10 +38,11 @@ function bookInfo(event) {
         return;
     }
     else{
+        
         console.error('Not Found');
     }
 }
-function fillAllFields(source) {
+function fillAllFields(source,infoOfMyBook=false) {
     bookSelected = source;
     title.innerText = source.title;
     subtitle.innerText = source.subtitle;
@@ -53,7 +55,16 @@ function fillAllFields(source) {
     categoriesRender(source.categories);
 
     bookInfoCard.style.visibility = 'visible';
-    close.addEventListener('click', () => bookInfoCard.style.visibility = 'hidden');
+    if(infoOfMyBook){
+        toBuy.style.visibility = 'hidden';
+    }
+    else{
+        toBuy.style.visibility = 'visible';
+    }
+    close.addEventListener('click', () =>{
+        bookInfoCard.style.visibility = 'hidden'
+        toBuy.style.visibility = 'hidden';
+    } );
 }
 
 function categoriesRender(categoriesSource) {
