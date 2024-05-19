@@ -2,6 +2,10 @@ import { booksRender } from "./booksRender.js";
 
 const btnSearch = document.querySelector("#btn-search");
 const searchbar = document.querySelector("#search");
+const booksSection = document.querySelector("#books");
+const tabMyBooks = document.querySelector("#tab-my-books");
+const tabRecent = document.querySelector("#tab-recent");
+const tabs = document.querySelector("#tabs");
 
 const url = "http://localhost:8383/api/bookstore/search?criteria=";
 
@@ -9,6 +13,17 @@ let itemsFromSearch;
 
 btnSearch.addEventListener('click', searchBooks);
 async function searchBooks(){
+    document.querySelector("#search-tab")?.remove();
+    tabs.insertAdjacentHTML('beforeend',`
+    <li id="search-tab" class="nav-item">
+            <a id="tab-recent" class="nav-link active" aria-current="page" href="#">Search Books</a>
+        </li>
+    `);
+    booksSection.innerHTML = '';
+    tabRecent.classList.add('text-success');
+    tabRecent.classList.remove('active');
+    tabMyBooks.classList.remove('active');
+    tabMyBooks.classList.add('text-success');
 
     try {
         const res = await fetch(url+searchbar.value, {

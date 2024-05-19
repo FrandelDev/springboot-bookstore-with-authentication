@@ -5,12 +5,15 @@ import { removeOwnedBooks } from "./removeOwnedBooks.js";
 
 const tabMyBooks = document.querySelector("#tab-my-books");
 const tabRecent = document.querySelector("#tab-recent");
+const searchbar = document.querySelector("#search");
 
 
 tabMyBooks.addEventListener('click',goToMyBooksTab);
 async function goToMyBooksTab(){
+    document.querySelector("#search-tab")?.remove();
+    searchbar.value = '';
     tabMyBooks.classList.remove('text-success');
-    tabMyBooks.classList.toggle('active');
+    tabMyBooks.classList.add('active');
     tabRecent.classList.remove('active');
     tabRecent.classList.add('text-success');
     await removeOwnedBooks();
