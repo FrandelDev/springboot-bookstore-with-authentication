@@ -9,7 +9,7 @@ import { addToCart,cart} from "./addToCart.js";
 import { postBooks } from "./postBooks.js";
 import { removeOwnedBooks } from "./removeOwnedBooks.js";
 import { searchBooks } from "./searchBooks.js";
-
+const loader = document.querySelector("#loading");
 let instance = null;
 
 class Singleton {
@@ -30,10 +30,11 @@ class Singleton {
         this.data = newData;
     }
 }
-
+loader.style.visibility = 'visible';
 await getRecommendedBooks();
 await getRecentBooks();
 await getMyBooks();
+loader.style.visibility = 'hidden';
 
 let allBooks = []
 allBooks.push(...recentBooks);

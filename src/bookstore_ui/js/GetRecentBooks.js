@@ -1,10 +1,10 @@
-
+const loader = document.querySelector("#loading");
 
 const url = "http://localhost:8383/api/bookstore/recent";
 let recentBooks;
 async function getRecentBooks(){
-  
     try {
+
         const res = await fetch(url, {
             method: "GET",
             headers: {
@@ -13,6 +13,7 @@ async function getRecentBooks(){
         });
 
         if (!res.ok) {
+            loader.style.visibility = 'hidden';
             const error = await res.json();
             throw new Error(error.message);
         } else {
@@ -22,6 +23,7 @@ async function getRecentBooks(){
     } catch (error) {
         console.error('Error:', error);
     }
+    
 }
 
 export {getRecentBooks,recentBooks}

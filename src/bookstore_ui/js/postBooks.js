@@ -12,7 +12,7 @@ const placeHolderCart = document.querySelector("#placeHolderCart");
 const subtotal = document.querySelector("#subtotal");
 const totalDiscount = document.querySelector("#total-discount");
 const totalToPay = document.querySelector("#total-to-pay");
-
+const added = document.querySelector("#added");
 
 const url = "http://localhost:8383/api/bookstore/book";
 async function postBooks(books) {
@@ -32,6 +32,8 @@ async function postBooks(books) {
             }
             else{
            document.querySelector("#col-"+book.id).remove();
+           added.style.visibility = 'visible';
+           setTimeout(()=>added.style.visibility = 'hidden',3000);
             }
         } catch (error) {
             console.error('Error:', error);

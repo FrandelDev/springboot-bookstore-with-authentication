@@ -230,3 +230,18 @@ color: red;
     font-weight: bolder;
     cursor: pointer;
 }
+
+#loading {
+    position: absolute;
+    left: 45%;
+    top: 45%;
+    visibility: hidden;
+}
+#added{
+    position: absolute;
+    right: 5%;
+    top: 55%;
+    width: 100px;
+    z-index: 5;
+    visibility: hidden;
+}

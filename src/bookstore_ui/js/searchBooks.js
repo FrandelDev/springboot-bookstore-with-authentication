@@ -6,6 +6,7 @@ const booksSection = document.querySelector("#books");
 const tabMyBooks = document.querySelector("#tab-my-books");
 const tabRecent = document.querySelector("#tab-recent");
 const tabs = document.querySelector("#tabs");
+const loader = document.querySelector("#loading");
 
 const url = "http://localhost:8383/api/bookstore/search?criteria=";
 
@@ -26,6 +27,7 @@ async function searchBooks(){
     tabMyBooks.classList.add('text-success');
 
     try {
+        loader.style.visibility = 'visible';
         const res = await fetch(url+searchbar.value, {
             method: "GET",
             headers: {
@@ -40,6 +42,7 @@ async function searchBooks(){
             const data = await res.json();
             booksRender(data);
             itemsFromSearch = data;
+            loader.style.visibility = 'hidden';
             return data;
         }
     } catch (error) {

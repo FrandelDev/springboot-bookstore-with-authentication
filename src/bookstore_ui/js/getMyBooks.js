@@ -3,7 +3,7 @@
 
 let myBooks;
 
-
+const loader = document.querySelector("#loading");
 const url = "http://localhost:8383/api/bookstore/";
 async function getMyBooks(){
 
@@ -16,6 +16,7 @@ async function getMyBooks(){
         });
 
         if (!res.ok) {
+            loader.style.visibility = 'hidden';
             const error = await res.json();
             throw new Error(error.message);
         } else {
