@@ -5,6 +5,8 @@ import com.bookstore.repository.BookRepository;
 import com.bookstore.services.AddCategoriesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,7 +19,7 @@ public class BookController {
     private @Qualifier("databaseService") BookRepository bookRepository;
 
     @GetMapping("/book/{id}")
-    public Book getBook(@PathVariable Long id){
+    public Book getBook(@PathVariable String id){
        return bookRepository.getBookById(id);
     }
 
@@ -49,7 +51,7 @@ public class BookController {
     }
 
     @DeleteMapping("/book/{id}")
-    public boolean deleteBook(@PathVariable Long id){
+    public boolean deleteBook(@PathVariable String id){
         return bookRepository.removeBook(id);
     }
 

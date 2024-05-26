@@ -36,6 +36,7 @@ async function searchBooks(){
         });
 
         if (!res.ok) {
+            loader.style.visibility = 'hidden';
             const error = await res.json();
             throw new Error(error.message);
         } else {

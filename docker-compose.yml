@@ -1,0 +1,21 @@
+version: '5'
+
+services: 
+
+  bookstore:
+    image: frandelartifact/bookstore
+    build: ./src/bookstore/
+    ports:
+      - "8383:8383"
+
+  bookstore-recommendations:
+    image: frandelartifact/bookstore-recommendations
+    build: ./src/bookstore_recommendation_of_books/
+    ports:
+      - "8384:8384"
+
+  bookstore-UI:
+    image: frandelartifact/bookstore-ui
+    build: ./src/bookstore_ui/
+    ports:
+      - "8080:80"

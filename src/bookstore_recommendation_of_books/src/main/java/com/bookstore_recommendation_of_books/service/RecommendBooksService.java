@@ -40,7 +40,7 @@ public class RecommendBooksService {
                     .image(searchBook.get("image").toString())
                     .price(Math.round(new Random().nextDouble(15.00,50.99)*100.0)/100.0)
                     .priceWithDiscount(Math.round((newBook.getPrice()-(newBook.getPrice()*10)/100)*100d)/100d)
-                    .categories((List<String>) template.getForObject("http://localhost:8383/api/bookstore/get-categories?bookTitle="+newBook.getTitle(),List.class))
+                    .categories((List<String>) template.getForObject("http://bookstore:8383/api/bookstore/get-categories?bookTitle="+newBook.getTitle(),List.class))
                     .build();
 
             booksToRecommend.add(newBook);
@@ -80,7 +80,7 @@ public class RecommendBooksService {
     public static List<String> getBooksCategories(){
 
         List<String> allCategories = new ArrayList<>();
-        List<Map<String, Object>> result = template.getForObject("http://localhost:8383/api/bookstore", List.class);
+        List<Map<String, Object>> result = template.getForObject("http://bookstore:8383/api/bookstore", List.class);
 
         result.forEach(book ->{
           allCategories.addAll((List<String>)book.get("categories"));

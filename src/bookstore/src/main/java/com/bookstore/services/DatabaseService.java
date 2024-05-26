@@ -19,7 +19,7 @@ public class DatabaseService implements BookRepository {
 
 
     @Override
-    public Book getBookById(Long id) {
+    public Book getBookById(String id) {
         String sql = "SELECT * FROM BOOKS WHERE ID = ?";
         return template.queryForObject(sql,new BookMapper(),id);
     }
@@ -63,7 +63,7 @@ public class DatabaseService implements BookRepository {
     }
 
     @Override
-    public boolean removeBook(Long id) {
+    public boolean removeBook(String id) {
         String sql = "DELETE FROM BOOKS WHERE ID = ?";
        int rowsAffected = template.update(sql,id);
         return rowsAffected != 0;

@@ -7,8 +7,8 @@ import java.util.List;
 
 @Repository
 public interface BookRepository {
-    Book getBookById(Long id);
+    Book getBookById(String id);
     void insertNewBook(Book book);
     List<Book> getAllBooks();
-    boolean removeBook(Long id);
+    boolean removeBook(String id);
 }
