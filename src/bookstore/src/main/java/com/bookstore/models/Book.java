@@ -23,7 +23,7 @@ public class Book {
     String image;
     Double price;
     List<String> categories;
-
+public Book(){}
 //    public Book(String id, String title, Optional<String> subtitle, String description, String authors, String publisher, Integer pages, Integer year, String image, Double price, List<String> categories) {
 //        this.id = id;
 //        this.title = title;

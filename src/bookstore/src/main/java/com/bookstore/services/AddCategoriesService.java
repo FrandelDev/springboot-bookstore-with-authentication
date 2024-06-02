@@ -1,5 +1,7 @@
 package com.bookstore.services;
 
+import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.mvc.method.annotation.RedirectAttributesMethodArgumentResolver;
@@ -11,13 +13,14 @@ import java.util.*;
 public class AddCategoriesService {
 
     private static int chances = 32;
+
     private static final RestTemplate restTemplate = new RestTemplate();
 
 
-    public static List<String> addCategories(String title){
+
+    public static List<String> addCategories(@NotNull String title){
 
         String searchCriteria = title.toLowerCase().replaceAll(" ","+");
-
         String url = "https://openlibrary.org/search.json?title="+searchCriteria;
 
         Map<String,Object> res = restTemplate.getForObject(url, Map.class);

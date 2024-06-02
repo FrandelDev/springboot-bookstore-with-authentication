@@ -24,15 +24,16 @@ public class BookController {
     }
 
     @PostMapping("/book")
-    public void setBook(@RequestBody Book bodyBook){
+    @ResponseStatus(HttpStatus.CREATED)
+    public Book setBook(@RequestBody Book bodyBook){
         StringBuilder purifierId = new StringBuilder(bodyBook.getId());
         if(purifierId.charAt(purifierId.length()-1) == 'X'){
             purifierId.deleteCharAt(purifierId.length()-1);
         }
 
-        List<String> categories = AddCategoriesService.addCategories(bodyBook.getTitle());
+        List<String> categories = bodyBook.getCategories().isEmpty() ? AddCategoriesService.addCategories(bodyBook.getTitle()) :bodyBook.getCategories();
 
-        double price = new Random().nextDouble(15.00,50.99);
+        double price = bodyBook.getPrice() == null ? new Random().nextDouble(15.00,50.99) :  bodyBook.getPrice();
 
         Book book = Book.builder()
                 .id(String.valueOf(purifierId))
@@ -48,6 +49,7 @@ public class BookController {
                 .categories(categories)
                 .build();
         bookRepository.insertNewBook(book);
+        return book;
     }
 
     @DeleteMapping("/book/{id}")

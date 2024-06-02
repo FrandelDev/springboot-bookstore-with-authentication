@@ -9,7 +9,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Objects;
 
 @Service
 @Qualifier("databaseService")
@@ -25,7 +24,7 @@ public class DatabaseService implements BookRepository {
     }
 
     @Override
-    public void insertNewBook(Book book) {
+    public int insertNewBook(Book book) {
         String sql = """
                 INSERT INTO BOOKS(
                 ID,
@@ -41,7 +40,7 @@ public class DatabaseService implements BookRepository {
                 CATEGORIES) VALUES (?,?,?,?,?,?,?,?,?,?,?)""";
 
 
-        template.update(sql,
+       return template.update(sql,
                 book.getId(),
                 book.getTitle(),
                 book.getSubtitle().isPresent() ? book.getSubtitle().get():"",
