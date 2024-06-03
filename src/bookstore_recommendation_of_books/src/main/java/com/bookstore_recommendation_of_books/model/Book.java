@@ -18,6 +18,7 @@ public class Book {
     Double priceWithDiscount;
     List<String> categories;
 
+
     public String getId() {
         return id;
     }
@@ -117,5 +118,22 @@ public class Book {
     }
     public Book build(){
         return this;
+    }
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id='" + id + '\'' +
+                ", title='" + title + '\'' +
+                ", subtitle=" + subtitle +
+                ", description='" + description + '\'' +
+                ", authors='" + authors + '\'' +
+                ", publisher='" + publisher + '\'' +
+                ", pages=" + pages +
+                ", year=" + year +
+                ", image='" + image + '\'' +
+                ", price=" + price +
+                ", priceWithDiscount=" + priceWithDiscount +
+                ", categories=" + categories +
+                '}';
     }
 }

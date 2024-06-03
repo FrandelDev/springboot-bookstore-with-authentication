@@ -3,6 +3,7 @@ package com.bookstore.services;
 
 import com.bookstore.mappers.BookMapper;
 import com.bookstore.models.Book;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -10,10 +11,14 @@ import java.util.*;
 
 @Service
 public class DbBooksApiService {
-    private static final RestTemplate template = new RestTemplate();
+    static RestTemplate template = new RestTemplate();
+        @Autowired
+        public  DbBooksApiService(RestTemplate template){
+            DbBooksApiService.template = template;
+        }
 
     public static List<Book> getBooksBySearch(String searchCriteria){
-        List<String> ids = getIdOfBooks("https://www.dbooks.org/api/search/"+searchCriteria.toLowerCase().replaceAll(" ","+"));
+        List<String> ids = getIdOfBooks("https://www.dbooks.org/api/search/"+searchCriteria.toLowerCase().replaceAll(" ","+"),20);
         List<Book> books = new ArrayList<>();
 
         ids.forEach(id ->{
@@ -36,7 +41,7 @@ public class DbBooksApiService {
         return books;
     }
     public  static  List<Book> getRecentBooks(){
-        List<String> ids = getIdOfBooks("https://www.dbooks.org/api/recent");
+        List<String> ids = getIdOfBooks("https://www.dbooks.org/api/recent",20);
         List<Book> recentBooks = new ArrayList<>();
 
         ids.forEach(id ->{
@@ -62,12 +67,13 @@ public class DbBooksApiService {
 
 
     }
-    public static List<String> getIdOfBooks(String url){
+    public static List<String> getIdOfBooks(String url, int quantity){
         List<String> ids = new ArrayList<>();
 
         Map<String,Object> result = template.getForObject(url, Map.class);
         List<Map<String,Object>> books = (List<Map<String,Object>>) result.get("books");
-        for (int i = 0; i < 20; i++) {
+
+        for (int i = 0; i < quantity; i++) {
             StringBuilder purifierId = new StringBuilder(String.valueOf(books.get(i).get("id")));
             if (purifierId.charAt(purifierId.length() - 1) == 'X') {
                 purifierId.deleteCharAt(purifierId.length() - 1);
@@ -75,9 +81,6 @@ public class DbBooksApiService {
 
             ids.add(purifierId.toString());
         }
-
-
-
 
         return ids;
     }

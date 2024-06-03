@@ -2,6 +2,7 @@ package com.bookstore_recommendation_of_books.service;
 
 
 import com.bookstore_recommendation_of_books.model.Book;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -12,9 +13,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
 @Service
 public class RecommendBooksService {
 
-    private static final RestTemplate template = new RestTemplate();
+    private static RestTemplate template;
 
-
+    @Autowired
+    public RecommendBooksService(RestTemplate template) {
+        RecommendBooksService.template = template;
+    }
 
     public static List<Book> recommendedBooksAndApplyDiscounts(){
 
@@ -67,13 +71,15 @@ public class RecommendBooksService {
     }
 
     public static String[]  peekCategories(){
-        var categories = getBooksCategories();
+        List<String> categories = getBooksCategories();
+
         String[] categoriesForSearchCriteria = new String[8];
 
         for (int i = 7; i >= 0; i--){
-            int categoryIndex = new Random().nextInt(0,categories.toArray().length);
+            int categoryIndex = new Random().nextInt(0,categories.size());
             categoriesForSearchCriteria[i] = categories.get(categoryIndex);
         }
+
         return categoriesForSearchCriteria;
     }
 
