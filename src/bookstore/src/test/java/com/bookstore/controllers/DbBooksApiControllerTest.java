@@ -12,11 +12,15 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+
+/**
+ * This class is used to test the DbBooksApiController class.
+ * It uses MockMvc to perform HTTP requests and Mockito to mock the DbBooksApiService.
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 class DbBooksApiControllerTest {
@@ -26,6 +30,11 @@ class DbBooksApiControllerTest {
 
     static Data data = new Data();
 
+
+    /**
+     * This method sets up the mocked DbBooksApiService before all tests.
+     * It configures the service to return predefined data when its methods are called.
+     */
     @BeforeAll()
     static void setUp() {
         MockedStatic<DbBooksApiService> mockedService = Mockito.mockStatic(DbBooksApiService.class);

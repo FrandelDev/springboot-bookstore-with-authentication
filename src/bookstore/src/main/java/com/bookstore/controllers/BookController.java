@@ -23,6 +23,17 @@ public class BookController {
        return bookRepository.getBookById(id);
     }
 
+
+    /**
+     * This method is used to create a new book and save it in the repository.
+     * It takes a Book object as input and returns the created Book object.
+     *
+     * @PostMapping("/book") This annotation maps HTTP POST requests onto this method.
+     * @ResponseStatus(HttpStatus.CREATED) This annotation sets the status code to 201 Created.
+     *
+     * @param bodyBook This is the book object received in the request body.
+     * @return This returns the created book object.
+     */
     @PostMapping("/book")
     @ResponseStatus(HttpStatus.CREATED)
     public Book setBook(@RequestBody Book bodyBook){

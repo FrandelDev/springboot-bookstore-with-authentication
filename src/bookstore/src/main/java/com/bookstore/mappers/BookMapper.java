@@ -9,7 +9,21 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Optional;
 
+
+/**
+ * This class is a mapper for the Book object. It implements the RowMapper interface provided by Spring JDBC.
+ * It is used to map a row of the result set to a Book instance.
+ */
 public final class BookMapper implements RowMapper<Book>{
+
+    /**
+     * This method is used to map a row of the result set to a Book instance.
+     *
+     * @param rs The ResultSet object that contains the data returned by a SQL query.
+     * @param rowNum The number of the current row.
+     * @return A Book instance that represents the current row of the result set.
+     * @throws SQLException If a database access error occurs or this method is called on a closed result set.
+     */
     public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
 
 

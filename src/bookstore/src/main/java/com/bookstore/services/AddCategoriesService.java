@@ -1,14 +1,20 @@
 package com.bookstore.services;
 
 import org.jetbrains.annotations.NotNull;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.servlet.mvc.method.annotation.RedirectAttributesMethodArgumentResolver;
+
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Random;
 
 
-import java.util.*;
-
+/**
+ * This service class is used to add categories to a book based on its title.
+ * It makes a request to the Open Library API and retrieves a list of subjects related to the book.
+ * If no subjects are found, it defaults to the category "Technology".
+ */
 @Service
 public class AddCategoriesService {
 
@@ -17,7 +23,14 @@ public class AddCategoriesService {
     private static final RestTemplate restTemplate = new RestTemplate();
 
 
-
+    /**
+     * This method is used to add categories to a book based on its title.
+     * It makes a request to the Open Library API and retrieves a list of subjects related to the book.
+     * If no subjects are found, it defaults to the category "Technology".
+     *
+     * @param title The title of the book.
+     * @return A list of categories related to the book.
+     */
     public static List<String> addCategories(@NotNull String title){
 
         String searchCriteria = title.toLowerCase().replaceAll(" ","+");

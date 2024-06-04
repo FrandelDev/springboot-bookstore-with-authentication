@@ -9,6 +9,11 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
 
+
+/**
+ * This service class is used to interact with the dbooks.org API for operations related to books.
+ * It uses RestTemplate for making HTTP requests.
+ */
 @Service
 public class DbBooksApiService {
     static RestTemplate template = new RestTemplate();
@@ -17,6 +22,14 @@ public class DbBooksApiService {
             DbBooksApiService.template = template;
         }
 
+
+    /**
+     * This method is used to search for books by a given criteria.
+     * It makes a request to the dbooks.org API and retrieves a list of books that match the search criteria.
+     *
+     * @param searchCriteria The criteria to search for books.
+     * @return A list of books that match the search criteria.
+     */
     public static List<Book> getBooksBySearch(String searchCriteria){
         List<String> ids = getIdOfBooks("https://www.dbooks.org/api/search/"+searchCriteria.toLowerCase().replaceAll(" ","+"),20);
         List<Book> books = new ArrayList<>();
@@ -40,6 +53,14 @@ public class DbBooksApiService {
     });
         return books;
     }
+
+
+    /**
+     * This method is used to retrieve the most recent books.
+     * It makes a request to the dbooks.org API and retrieves a list of the most recent books.
+     *
+     * @return A list of the most recent books.
+     */
     public  static  List<Book> getRecentBooks(){
         List<String> ids = getIdOfBooks("https://www.dbooks.org/api/recent",20);
         List<Book> recentBooks = new ArrayList<>();
@@ -64,9 +85,17 @@ public class DbBooksApiService {
 
         });
     return recentBooks;
-
-
     }
+
+
+    /**
+     * This method is used to retrieve the IDs of books from the dbooks.org API.
+     * It makes a request to the dbooks.org API and retrieves a list of book IDs.
+     *
+     * @param url The URL to make the API request.
+     * @param quantity The number of book IDs to retrieve.
+     * @return A list of book IDs.
+     */
     public static List<String> getIdOfBooks(String url, int quantity){
         List<String> ids = new ArrayList<>();
 

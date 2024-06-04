@@ -18,7 +18,10 @@ import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-
+/**
+ * This class is used to test the DatabaseService class.
+ * It uses Mockito to mock the JdbcTemplate and the DatabaseService.
+ */
 @ExtendWith(MockitoExtension.class)
 class DatabaseServiceTest {
 

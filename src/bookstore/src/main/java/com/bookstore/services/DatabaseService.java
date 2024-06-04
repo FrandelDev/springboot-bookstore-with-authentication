@@ -7,8 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
+
+
+/**
+ * This service class is used to interact with the database for operations related to books.
+ * It implements the BookRepository interface and uses JdbcTemplate for database operations.
+ */
 
 @Service
 @Qualifier("databaseService")

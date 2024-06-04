@@ -7,9 +7,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.*;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 
+/**
+ * This service class is used to recommend books and apply discounts.
+ * It uses RestTemplate to make HTTP requests to the dbooks.org API and the bookstore API.
+ */
 @Service
 public class RecommendBooksService {
 
@@ -20,6 +23,13 @@ public class RecommendBooksService {
         RecommendBooksService.template = template;
     }
 
+
+    /**
+     * This method is used to recommend books and apply discounts.
+     * It makes requests to the dbooks.org API to get book details and applies a discount to the price.
+     *
+     * @return A list of recommended books with applied discounts.
+     */
     public static List<Book> recommendedBooksAndApplyDiscounts(){
 
         List<String> booksId = getBooksIdToRecommend();
@@ -53,6 +63,13 @@ public class RecommendBooksService {
      return booksToRecommend;
     }
 
+
+    /**
+     * This method is used to get the IDs of books to recommend.
+     * It makes requests to the dbooks.org API to search for books by category and retrieves their IDs.
+     *
+     * @return A list of book IDs to recommend.
+     */
     public static List<String> getBooksIdToRecommend(){
         var categories = Arrays.asList(peekCategories());
         List<String> booksId = new ArrayList<>();
@@ -70,6 +87,12 @@ public class RecommendBooksService {
         return booksId;
     }
 
+    /**
+     * This method is used to get the IDs of books to recommend.
+     * It makes requests to the dbooks.org API to search for books by category and retrieves their IDs.
+     *
+     * @return A list of book IDs to recommend.
+     */
     public static String[]  peekCategories(){
         List<String> categories = getBooksCategories();
 
@@ -83,6 +106,12 @@ public class RecommendBooksService {
         return categoriesForSearchCriteria;
     }
 
+    /**
+     * This method is used to get all book categories.
+     * It makes a request to the bookstore API and retrieves all book categories.
+     *
+     * @return A list of all book categories.
+     */
     public static List<String> getBooksCategories(){
 
         List<String> allCategories = new ArrayList<>();

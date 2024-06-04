@@ -6,7 +6,6 @@ import com.bookstore.services.AddCategoriesService;
 import com.bookstore.services.DatabaseService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jdk8.Jdk8Module;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
@@ -22,6 +21,11 @@ import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+
+/**
+ * This class is used to test the BookController class.
+ * It uses MockMvc to perform HTTP requests and Mockito to mock the DatabaseService.
+ */
 @SpringBootTest
 @AutoConfigureMockMvc
 class BookControllerTest {
@@ -62,6 +66,10 @@ class BookControllerTest {
 
         verify(databaseService, times(1)).insertNewBook(book);
     }
+
+    /**
+     * This test checks if the setBook method of the BookController can handle incomplete books correctly.
+     */
     @Test
     void setIncompleteBook() throws Exception {
         Book book = data.allBooks.get(1);
@@ -78,10 +86,13 @@ class BookControllerTest {
         String responseBody = result.getResponse().getContentAsString();
         ObjectMapper jsonAsBook = new ObjectMapper();
         jsonAsBook.registerModule(new Jdk8Module());
+
         Book completeBook = jsonAsBook.readValue(responseBody,Book.class);
         when(databaseService.insertNewBook(completeBook)).thenReturn(1);
         verify(databaseService, times(1)).insertNewBook(completeBook);
     }
+
+
     @Test
     void deleteBook() throws Exception {
         when(databaseService.removeBook(anyString())).thenReturn(true);
