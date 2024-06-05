@@ -4,6 +4,7 @@ import com.bookstore.Data;
 import com.bookstore.models.Book;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Timeout;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.mockito.invocation.InvocationOnMock;
@@ -67,6 +68,7 @@ class DbBooksApiServiceTest {
     }
 
     @Test
+    @Timeout(30)
     void getBooksBySearch() {
         List<Book> books= DbBooksApiService.getBooksBySearch("any");
         assertEquals("Programming for Computations - Python",books.getFirst().getTitle());
@@ -74,6 +76,7 @@ class DbBooksApiServiceTest {
     }
 
     @Test
+    @Timeout(30)
     void getRecentBooks() {
         List<Book> books= DbBooksApiService.getRecentBooks();
         assertEquals("Programming for Computations - Python",books.getFirst().getTitle());
