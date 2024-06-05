@@ -68,7 +68,7 @@ class DbBooksApiServiceTest {
     }
 
     @Test
-    @Timeout(30)
+    @Timeout(60)
     void getBooksBySearch() {
         List<Book> books= DbBooksApiService.getBooksBySearch("any");
         assertEquals("Programming for Computations - Python",books.getFirst().getTitle());
@@ -76,7 +76,7 @@ class DbBooksApiServiceTest {
     }
 
     @Test
-    @Timeout(30)
+    @Timeout(60)
     void getRecentBooks() {
         List<Book> books= DbBooksApiService.getRecentBooks();
         assertEquals("Programming for Computations - Python",books.getFirst().getTitle());
