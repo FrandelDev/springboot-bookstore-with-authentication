@@ -40,5 +40,7 @@ class RecommendedBooksControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0].title").value("Programming for Computations - Python"));
+
+        Mockito.framework().clearInlineMocks();
     }
 }

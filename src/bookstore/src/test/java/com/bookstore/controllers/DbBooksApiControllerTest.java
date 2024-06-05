@@ -2,7 +2,9 @@ package com.bookstore.controllers;
 
 import com.bookstore.Data;
 import com.bookstore.services.DbBooksApiService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
@@ -35,12 +37,16 @@ class DbBooksApiControllerTest {
      * This method sets up the mocked DbBooksApiService before all tests.
      * It configures the service to return predefined data when its methods are called.
      */
-    @BeforeAll()
-    static void setUp() {
+    @BeforeEach
+    void setUp() {
         MockedStatic<DbBooksApiService> mockedService = Mockito.mockStatic(DbBooksApiService.class);
             mockedService.when(DbBooksApiService::getRecentBooks).thenReturn(data.allBooks);
             mockedService.when(()-> DbBooksApiService.getBooksBySearch(anyString())).thenReturn(data.allBooks);
 
+    }
+    @AfterEach
+    void safeThread(){
+        Mockito.framework().clearInlineMocks();
     }
 
     @Test
