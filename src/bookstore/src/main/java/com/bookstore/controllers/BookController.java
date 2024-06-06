@@ -47,7 +47,7 @@ public class BookController {
 
         double price = bodyBook.getPrice() == null ? new SecureRandom().nextDouble(15.00,50.99) :  bodyBook.getPrice();
 
-        Book book = Book.builder()
+        Book book = new Book()
                 .id(String.valueOf(purifierId))
                 .title(bodyBook.getTitle())
                 .subtitle(bodyBook.getSubtitle())

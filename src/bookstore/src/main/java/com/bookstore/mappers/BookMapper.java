@@ -27,7 +27,7 @@ public final class BookMapper implements RowMapper<Book>{
     public Book mapRow(ResultSet rs, int rowNum) throws SQLException {
 
 
-        return Book.builder()
+        return new Book()
                 .id(rs.getString("id"))
                 .title(rs.getString("title"))
                 .subtitle(Optional.ofNullable(rs.getString("subtitle")))

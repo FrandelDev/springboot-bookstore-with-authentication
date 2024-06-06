@@ -9,9 +9,7 @@ public class Data {
     public Map<String,Object> bookMap = new HashMap<>();
 
     public Data() {
-        Book book = new Book();
-
-        book
+        allBooks.add( new Book()
                 .id("3030168779")
                 .title("Programming for Computations - Python")
                 .subtitle(Optional.of("A Gentle Introduction to Numerical Simulations with Python 3.6"))
@@ -31,8 +29,8 @@ public class Data {
                         "Mathematics",
                         "Numeric computing",
                         "Numerical analysis"))
-                .build();
-            allBooks.add(book);
+                .build());
+
         categories.addAll(List.of("Technology", "Python", "Computer Programming","code","Maths","Science","Logic","Engineering","py"));
 
         List<Map<String, Object>> booksInMap = new ArrayList<>();

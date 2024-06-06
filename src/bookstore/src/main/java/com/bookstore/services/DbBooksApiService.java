@@ -37,7 +37,7 @@ public class DbBooksApiService {
 
         ids.forEach(id ->{
             Map<String,Object> book = template.getForObject("https://www.dbooks.org/api/book/"+id, Map.class);
-            Book newBook = Book.builder()
+            Book newBook = new Book()
                     .id(id)
                     .title(book.get("title").toString())
                     .subtitle(Optional.of(book.get("subtitle").toString()))
@@ -68,7 +68,7 @@ public class DbBooksApiService {
 
         ids.forEach(id ->{
             Map<String,Object> book = template.getForObject("https://www.dbooks.org/api/book/"+id, Map.class);
-            Book newBook = Book.builder()
+            Book newBook = new Book()
                     .id(id)
                     .title(book.get("title").toString())
                     .subtitle(Optional.of(book.get("subtitle").toString()))
