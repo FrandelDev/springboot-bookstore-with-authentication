@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Random;
 
@@ -44,7 +45,7 @@ public class BookController {
 
         List<String> categories = bodyBook.getCategories().isEmpty() ? AddCategoriesService.addCategories(bodyBook.getTitle()) :bodyBook.getCategories();
 
-        double price = bodyBook.getPrice() == null ? new Random().nextDouble(15.00,50.99) :  bodyBook.getPrice();
+        double price = bodyBook.getPrice() == null ? new SecureRandom().nextDouble(15.00,50.99) :  bodyBook.getPrice();
 
         Book book = Book.builder()
                 .id(String.valueOf(purifierId))

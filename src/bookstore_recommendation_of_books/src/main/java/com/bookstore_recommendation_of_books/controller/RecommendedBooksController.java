@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController()
-@CrossOrigin //This tag help to allow fetching from unknown origins.
+@CrossOrigin //enabling CORS
 public class RecommendedBooksController {
 
     @GetMapping()

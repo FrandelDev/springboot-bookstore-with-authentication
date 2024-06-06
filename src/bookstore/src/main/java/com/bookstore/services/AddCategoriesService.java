@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.security.SecureRandom;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -42,7 +43,7 @@ public class AddCategoriesService {
 
         if(itemsFounded != 0){
 
-            int randomCategories = new Random().nextInt(0, Math.min(itemsFounded, 100));
+            int randomCategories = new SecureRandom().nextInt(0, Math.min(itemsFounded, 100));
 
             List<Map<String, Object>> listOfObjects = (List<Map<String, Object>>) res.get("docs");
 

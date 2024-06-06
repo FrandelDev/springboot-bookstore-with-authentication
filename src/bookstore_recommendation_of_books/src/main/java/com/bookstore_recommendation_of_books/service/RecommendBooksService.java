@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.security.SecureRandom;
 import java.util.*;
 
 
@@ -52,7 +53,7 @@ public class RecommendBooksService {
                     .pages(Integer.valueOf(searchBook.get("pages").toString()))
                     .year(Integer.valueOf(searchBook.get("year").toString()))
                     .image(searchBook.get("image").toString())
-                    .price(Math.round(new Random().nextDouble(15.00,50.99)*100.0)/100.0)
+                    .price(Math.round(new SecureRandom().nextDouble(15.00,50.99)*100.0)/100.0)
                     .priceWithDiscount(Math.round((newBook.getPrice()-(newBook.getPrice()*10)/100)*100d)/100d)
                     .categories((List<String>) template.getForObject("http://bookstore:8383/api/bookstore/get-categories?bookTitle="+newBook.getTitle(),List.class))
                     .build();
@@ -80,7 +81,7 @@ public class RecommendBooksService {
             String total =  res.get("total").toString();
             if(res.get("status") != "not found"){
             List<Map<String,Object>> books = (List<Map<String,Object>>) res.get("books");
-            booksId.add((String) books.get(new Random().nextInt(0, Integer.valueOf(total))).get("id"));
+            booksId.add((String) books.get(new SecureRandom().nextInt(0, Integer.valueOf(total))).get("id"));
             }
         });
 
@@ -99,7 +100,7 @@ public class RecommendBooksService {
         String[] categoriesForSearchCriteria = new String[8];
 
         for (int i = 7; i >= 0; i--){
-            int categoryIndex = new Random().nextInt(0,categories.size());
+            int categoryIndex = new SecureRandom().nextInt(0,categories.size());
             categoriesForSearchCriteria[i] = categories.get(categoryIndex);
         }
 

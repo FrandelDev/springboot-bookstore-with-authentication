@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import java.security.SecureRandom;
 import java.util.*;
 
 
@@ -46,7 +47,7 @@ public class DbBooksApiService {
                     .pages(Integer.valueOf(book.get("pages").toString()))
                     .year(Integer.valueOf(book.get("year").toString()))
                     .image(book.get("image").toString())
-                    .price(Math.round(new Random().nextDouble(15.00,50.99)*100.0)/100.0)
+                    .price(Math.round(new SecureRandom().nextDouble(15.00,50.99)*100.0)/100.0)
                     .categories(AddCategoriesService.addCategories(book.get("title").toString()))
                     .build();
             books.add(newBook);
@@ -77,7 +78,7 @@ public class DbBooksApiService {
                     .pages(Integer.valueOf(book.get("pages").toString()))
                     .year(Integer.valueOf(book.get("year").toString()))
                     .image(book.get("image").toString())
-                    .price(Math.round(new Random().nextDouble(15.00,50.99)*100.0)/100.0)
+                    .price(Math.round(new SecureRandom().nextDouble(15.00,50.99)*100.0)/100.0)
                     .categories(AddCategoriesService.addCategories(book.get("title").toString()))
                     .build();
             recentBooks.add(newBook);
