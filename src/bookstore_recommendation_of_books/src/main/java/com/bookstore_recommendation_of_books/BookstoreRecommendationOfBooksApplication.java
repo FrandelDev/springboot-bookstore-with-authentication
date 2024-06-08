@@ -1,6 +1,6 @@
 package com.bookstore_recommendation_of_books;
 
-import com.bookstore_recommendation_of_books.service.RecommendBooksService;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;

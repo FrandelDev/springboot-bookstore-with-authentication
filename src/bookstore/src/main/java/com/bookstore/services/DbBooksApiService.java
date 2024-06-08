@@ -1,7 +1,6 @@
 package com.bookstore.services;
 
 
-import com.bookstore.mappers.BookMapper;
 import com.bookstore.models.Book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +18,7 @@ import java.util.*;
 public class DbBooksApiService {
     static RestTemplate template = new RestTemplate();
         @Autowired
-        public  DbBooksApiService(RestTemplate template){
+        public  DbBooksApiService(RestTemplate template){ // For inject mocks in tests.
             DbBooksApiService.template = template;
         }
 
@@ -32,7 +31,7 @@ public class DbBooksApiService {
      * @return A list of books that match the search criteria.
      */
     public static List<Book> getBooksBySearch(String searchCriteria){
-        List<String> ids = getIdOfBooks("https://www.dbooks.org/api/search/"+searchCriteria.toLowerCase().replaceAll(" ","+"),20);
+        List<String> ids = getIdOfBooks("https://www.dbooks.org/api/search/"+searchCriteria.toLowerCase().replace(" ","+"),20);
         List<Book> books = new ArrayList<>();
 
         ids.forEach(id ->{
@@ -101,8 +100,12 @@ public class DbBooksApiService {
         List<String> ids = new ArrayList<>();
 
         Map<String,Object> result = template.getForObject(url, Map.class);
-        List<Map<String,Object>> books = (List<Map<String,Object>>) result.get("books");
-
+        
+        List<Map<String,Object>> books = List.of();
+        if(result != null){
+        books = (List<Map<String,Object>>) result.get("books");
+        }
+        
         for (int i = 0; i < quantity; i++) {
             StringBuilder purifierId = new StringBuilder(String.valueOf(books.get(i).get("id")));
             if (purifierId.charAt(purifierId.length() - 1) == 'X') {

@@ -42,24 +42,25 @@ public class RecommendBooksService {
             }
 
             Map<String,Object> searchBook = template.getForObject("https://www.dbooks.org/api/book/"+purifierId,Map.class);
-            Book newBook = new Book();
-            newBook
-                    .id(purifierId.toString())
-                    .title(searchBook.get("title").toString())
-                    .subtitle(Optional.of(searchBook.get("subtitle").toString()))
-                    .description(searchBook.get("description").toString())
-                    .authors(searchBook.get("authors").toString())
-                    .publisher(searchBook.get("publisher").toString())
-                    .pages(Integer.valueOf(searchBook.get("pages").toString()))
-                    .year(Integer.valueOf(searchBook.get("year").toString()))
-                    .image(searchBook.get("image").toString())
-                    .price(Math.round(new SecureRandom().nextDouble(15.00,50.99)*100.0)/100.0)
-                    .priceWithDiscount(Math.round((newBook.getPrice()-(newBook.getPrice()*10)/100)*100d)/100d)
-                    .categories((List<String>) template.getForObject("http://bookstore:8383/api/bookstore/get-categories?bookTitle="+newBook.getTitle(),List.class))
-                    .build();
+            if(searchBook != null) {
+                Book newBook = new Book();
+                newBook
+                        .id(purifierId.toString())
+                        .title(searchBook.get("title").toString())
+                        .subtitle(Optional.of(searchBook.get("subtitle").toString()))
+                        .description(searchBook.get("description").toString())
+                        .authors(searchBook.get("authors").toString())
+                        .publisher(searchBook.get("publisher").toString())
+                        .pages(Integer.valueOf(searchBook.get("pages").toString()))
+                        .year(Integer.valueOf(searchBook.get("year").toString()))
+                        .image(searchBook.get("image").toString())
+                        .price(Math.round(new SecureRandom().nextDouble(15.00, 50.99) * 100.0) / 100.0)
+                        .priceWithDiscount(Math.round((newBook.getPrice() - (newBook.getPrice() * 10) / 100) * 100d) / 100d)
+                        .categories((List<String>) template.getForObject("http://bookstore:8383/api/bookstore/get-categories?bookTitle=" + newBook.getTitle(), List.class))
+                        .build();
 
-            booksToRecommend.add(newBook);
-
+                booksToRecommend.add(newBook);
+            }
         }
      return booksToRecommend;
     }
@@ -76,7 +77,7 @@ public class RecommendBooksService {
         List<String> booksId = new ArrayList<>();
 
         categories.forEach(category ->{
-            Map<String,Object> res = template.getForObject("https://www.dbooks.org/api/search/"+category.toLowerCase().replaceAll(" ","+"),Map.class);
+            Map<String,Object> res = template.getForObject("https://www.dbooks.org/api/search/"+category.toLowerCase().replace(" ","+"),Map.class);
 
             String total =  res.get("total").toString();
             if(res.get("status") != "not found"){
@@ -118,9 +119,9 @@ public class RecommendBooksService {
         List<String> allCategories = new ArrayList<>();
         List<Map<String, Object>> result = template.getForObject("http://bookstore:8383/api/bookstore", List.class);
 
-        result.forEach(book ->{
-          allCategories.addAll((List<String>)book.get("categories"));
-        });
+        if(result != null){
+        result.forEach(book -> allCategories.addAll((List<String>)book.get("categories")));
+        }
 
         return allCategories;
 

@@ -5,18 +5,18 @@ import java.util.Optional;
 
 public class Book {
 
-    String id;
-    String title;
-    Optional<String> subtitle;
-    String description;
-    String authors;
-    String publisher;
-    Integer pages;
-    Integer year;
-    String image;
-    Double price;
-    Double priceWithDiscount;
-    List<String> categories;
+    private String id;
+    private String title;
+    private Optional<String> subtitle;
+    private String description;
+    private String authors;
+    private String publisher;
+    private Integer pages;
+    private Integer year;
+    private String image;
+    private Double price;
+    private Double priceWithDiscount;
+    private List<String> categories;
 
 
     public String getId() {

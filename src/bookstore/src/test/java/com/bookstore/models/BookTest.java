@@ -3,9 +3,8 @@ package com.bookstore.models;
 import com.bookstore.Data;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyString;
+
 @SpringBootTest
 class BookTest {
     private Data data = new Data();
@@ -17,7 +16,7 @@ class BookTest {
 
     @Test
     void testEquals() {
-        assertTrue(data.allBooks.getFirst().equals(data.allBooks.getFirst()));
+        assertEquals(data.allBooks.getFirst(),data.allBooks.getFirst());
     }
 
     @Test

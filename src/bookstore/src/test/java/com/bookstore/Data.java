@@ -59,7 +59,6 @@ public class Data {
         bookToInsert.put("year", 2020);
         bookToInsert.put("image", "https://www.dbooks.org/img/books/3030168778s.jpg");
         bookToInsert.put("price", 30.99);
-        bookToInsert.put("priceWithDiscount", 23.99);
         bookToInsert.put("categories", Arrays.asList(
                 "Computational science and engineering",
                 "Computer science--mathematics",

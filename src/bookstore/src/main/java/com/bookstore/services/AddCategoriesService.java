@@ -8,7 +8,7 @@ import java.security.SecureRandom;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.Random;
+
 
 
 /**
@@ -21,7 +21,8 @@ public class AddCategoriesService {
 
     private static int chances = 32;
 
-    private static final RestTemplate restTemplate = new RestTemplate();
+    static  RestTemplate restTemplate = new RestTemplate();
+
 
 
     /**
@@ -34,12 +35,16 @@ public class AddCategoriesService {
      */
     public static List<String> addCategories(@NotNull String title){
 
-        String searchCriteria = title.toLowerCase().replaceAll(" ","+");
+        String searchCriteria = title.toLowerCase().replace(" ","+");
         String url = "https://openlibrary.org/search.json?title="+searchCriteria;
 
         Map<String,Object> res = restTemplate.getForObject(url, Map.class);
 
-        int itemsFounded = (int)res.get("numFound");
+        int itemsFounded = 0;
+        if(res != null){
+
+            itemsFounded = (int)res.get("numFound");
+        }
 
         if(itemsFounded != 0){
 

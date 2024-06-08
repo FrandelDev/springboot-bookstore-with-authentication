@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController()
-@CrossOrigin //enabling CORS
+@CrossOrigin("http://bookstore:8384") //enabling CORS for localhost
 public class RecommendedBooksController {
 
     @GetMapping()

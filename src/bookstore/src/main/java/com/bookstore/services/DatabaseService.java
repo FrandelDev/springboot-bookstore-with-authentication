@@ -48,7 +48,7 @@ public class DatabaseService implements BookRepository {
        return template.update(sql,
                 book.getId(),
                 book.getTitle(),
-                book.getSubtitle().isPresent() ? book.getSubtitle().get():"",
+                book.getSubtitle().orElse(""),
                 book.getDescription(),
                 book.getAuthors(),
                 book.getPublisher(),
