@@ -12,7 +12,6 @@ import java.security.SecureRandom;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:8383") //Enabling CORS for localhost
 public class BookController {
     @Autowired
     private @Qualifier("databaseService") BookRepository bookRepository;

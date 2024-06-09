@@ -2,7 +2,6 @@ package com.bookstore.controllers;
 
 import com.bookstore.models.Book;
 import com.bookstore.services.DbBooksApiService;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:8383")
 public class DbBooksApiController {
 
     @GetMapping("/recent")
