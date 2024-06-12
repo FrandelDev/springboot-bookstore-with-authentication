@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins={"http://localhost:8080","http://localhost:8384"})
 public class RecommendedBooksController {
 
     @GetMapping()

@@ -1,8 +1,11 @@
 package com.bookstore.services;
 
 import com.bookstore.mappers.BookMapper;
+import com.bookstore.mappers.UserMapper;
 import com.bookstore.models.Book;
+import com.bookstore.models.UserEntity;
 import com.bookstore.repository.BookRepository;
+import com.bookstore.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -17,7 +20,7 @@ import java.util.List;
 
 @Service
 @Qualifier("databaseService")
-public class DatabaseService implements BookRepository {
+public class DatabaseService implements BookRepository, UserRepository {
     @Autowired
     private JdbcTemplate template;
 
@@ -71,6 +74,16 @@ public class DatabaseService implements BookRepository {
         String sql = "DELETE FROM BOOKS WHERE ID = ?";
        int rowsAffected = template.update(sql,id);
         return rowsAffected != 0;
+    }
+
+    @Override
+    public UserEntity getUser(String username) {
+        return template.queryForObject("SELECT * FROM USERS WHERE username = ?",new UserMapper(),username);
+    }
+
+    @Override
+    public UserEntity createUser(UserEntity user) {
+        return null;
     }
 }
 

@@ -12,6 +12,11 @@ price DOUBLE,
 categories TEXT
 );
 
+CREATE TABLE USERS (
+username varchar(30) primary key,
+password varchar(200),
+role varchar(30)
+);
 -------------------------------------------------
 --              IMPORTING SOME DATA
 -------------------------------------------------
@@ -40,3 +45,6 @@ CATEGORIES) VALUES (
 30.99,
 'Computational science and engineering,Computer science--mathematics,Computer software,Mathematical software,Mathematics,Numeric computing,Numerical analysis'
 );
+
+INSERT INTO USERS (username,password,role)values('admin','$2y$10$66W108YB5e2eHHn5Ekl.UOv53uYg5IgRH/NpTlGt2TJWAayIQmFdG','ADMIN');
+INSERT INTO USERS (username,password,role)values('customer','$2y$10$R.OmgADsN4Ati8Worj8OpeQttjmFw5cOoTdbhU7wtd5dwvZVktAEe','CUSTOMER');

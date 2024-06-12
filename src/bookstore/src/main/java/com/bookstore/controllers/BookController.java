@@ -40,7 +40,7 @@ public class BookController {
             purifierId.deleteCharAt(purifierId.length()-1);
         }
 
-        List<String> categories = bodyBook.getCategories() == null ? AddCategoriesService.addCategories(bodyBook.getTitle()) :bodyBook.getCategories();
+        List<String> categories = bodyBook.getCategories() == null || bodyBook.getCategories().isEmpty()  ? AddCategoriesService.addCategories(bodyBook.getTitle()) :bodyBook.getCategories();
 
         double price = bodyBook.getPrice() == null ? new SecureRandom().nextDouble(15.00,50.99) :  bodyBook.getPrice();
 
