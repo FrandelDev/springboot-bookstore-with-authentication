@@ -2,6 +2,7 @@ package com.bookstore_recommendation_of_books.service;
 
 import com.bookstore_recommendation_of_books.Data;
 import com.bookstore_recommendation_of_books.model.Book;
+import org.apache.tomcat.websocket.AuthenticationException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.invocation.InvocationOnMock;
@@ -74,7 +75,7 @@ class RecommendBooksServiceTest {
     }
 
     @Test
-    void getCategories(){
+    void getCategories() throws AuthenticationException {
 
         List<String> categories = getBooksCategories();
 
@@ -83,7 +84,7 @@ class RecommendBooksServiceTest {
     }
 
     @Test
-    void peekCategories() {
+    void peekCategories() throws AuthenticationException {
 
         String[] categories = RecommendBooksService.peekCategories();
 
@@ -93,7 +94,7 @@ class RecommendBooksServiceTest {
     }
 
     @Test
-    void getBooksIdToRecommend() {
+    void getBooksIdToRecommend() throws AuthenticationException {
 
         List<String> booksId = RecommendBooksService.getBooksIdToRecommend();
 
@@ -103,7 +104,7 @@ class RecommendBooksServiceTest {
     }
 
     @Test
-    void recommendedBooksAndApplyDiscounts() {
+    void recommendedBooksAndApplyDiscounts() throws AuthenticationException {
 
         List<Book> recommendedBooks = RecommendBooksService.recommendedBooksAndApplyDiscounts();
 
