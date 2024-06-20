@@ -40,7 +40,7 @@ public class RecommendBooksService {
         HttpHeaders headers = new HttpHeaders();
         headers.set("Authorization", jwtToken);
 
-        // Build Request
+        // Prepare Request
         HttpEntity<String> request = new HttpEntity<>(headers);
 
         // Request
