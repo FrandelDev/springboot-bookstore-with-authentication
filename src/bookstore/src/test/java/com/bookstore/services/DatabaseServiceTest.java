@@ -78,7 +78,7 @@ class DatabaseServiceTest {
                 eq(String.join(",", book.getCategories()))
         )).thenReturn(1);
 
-        int rowsAffected = databaseService.insertNewBook(book);
+        int rowsAffected = databaseService.insertNewBook(book,"admin");
         assertTrue(rowsAffected > 0);
 
         verify(jdbcTemplate).update(eq(query),
@@ -101,7 +101,7 @@ class DatabaseServiceTest {
         String query = "SELECT * FROM BOOKS";
         when(jdbcTemplate.query(eq(query), any(BookMapper.class))).thenReturn(data.allBooks);
 
-        List<Book> allBooks = databaseService.getAllBooks();
+        List<Book> allBooks = databaseService.getAllBooks("admin");
 
         assertEquals(data.allBooks, allBooks);
 

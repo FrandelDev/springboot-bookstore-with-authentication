@@ -14,7 +14,7 @@ const totalDiscount = document.querySelector("#total-discount");
 const totalToPay = document.querySelector("#total-to-pay");
 const added = document.querySelector("#added");
 
-const url = "http://localhost:8383/api/bookstore/book";
+const url = "http://localhost:8383/api/bookstore/book/admin";
 async function postBooks(books) {
 
     books.forEach(async book => {
@@ -22,7 +22,8 @@ async function postBooks(books) {
             const res = await fetch(url, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer "+ localStorage.getItem("jwt")
                 },
                 body: JSON.stringify(book)
             });

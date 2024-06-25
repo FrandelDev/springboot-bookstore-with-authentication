@@ -11,7 +11,9 @@
     padding: 0 30px;
     z-index: 3;
 }
-
+#navbar .container-fluid{
+    width: 90%;
+}
 #navbar form{
     width: 25rem;
 }
@@ -21,6 +23,34 @@
 }
 #navbar form .btn:hover{
     color: #fff;
+}
+#navbar #login{
+    position: fixed;
+    top: 70px;
+    right: 0;
+    color: #fff;
+    border-radius: 0 0px 0px 15px;
+    visibility: hidden;
+}
+#navbar .visible{
+    visibility: visible;
+}
+#navbar #login form{
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    align-items: end;
+    padding: 20px;
+}
+#navbar #login form #loginBtn{
+    width: 65px;
+    margin-right: 10px;
+    color: #fff;
+}
+#navbar #toggle-login-form{
+    display: inline-block;
+    color: #fff;
+    cursor: pointer;
 }
 #tabs{
     margin-top: 70px;

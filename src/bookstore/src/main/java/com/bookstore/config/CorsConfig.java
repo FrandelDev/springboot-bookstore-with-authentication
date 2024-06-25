@@ -18,6 +18,7 @@ public class CorsConfig {
         corsConfiguration.setAllowedOrigins(List.of("http://bookstore-UI:8080","http://bookstore-recommendations:8384","http://localhost:8384","http://127.0.0.1:5500"));
         corsConfiguration.setAllowedMethods(List.of("GET","POST"));
         corsConfiguration.setAllowedHeaders(List.of("*"));
+        corsConfiguration.setExposedHeaders(List.of("Authorization"));
 
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**",corsConfiguration);

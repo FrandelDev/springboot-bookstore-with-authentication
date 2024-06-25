@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 
 
@@ -32,7 +34,7 @@ public class DatabaseService implements BookRepository, UserRepository {
     }
 
     @Override
-    public int insertNewBook(Book book) {
+    public int insertNewBook(Book book, String reader) {
         String sql = """
                 INSERT INTO BOOKS(
                 ID,
@@ -45,7 +47,9 @@ public class DatabaseService implements BookRepository, UserRepository {
                 PUBLISHED_YEAR,
                 IMAGE,
                 PRICE,
-                CATEGORIES) VALUES (?,?,?,?,?,?,?,?,?,?,?)""";
+                CATEGORIES,
+                READER
+                ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""";
 
 
        return template.update(sql,
@@ -59,14 +63,15 @@ public class DatabaseService implements BookRepository, UserRepository {
                 book.getYear(),
                 book.getImage(),
                 book.getPrice(),
-                String.join(",",book.getCategories())
+                String.join(",",book.getCategories()),
+               reader
         );
     }
 
     @Override
-    public List<Book> getAllBooks() {
-        String sql = "SELECT * FROM BOOKS";
-        return template.query(sql, new BookMapper());
+    public List<Book> getAllBooks(String reader) {
+        String sql = "SELECT * FROM BOOKS  INNER JOIN  USERS ON BOOKS.READER = USERS.USERNAME WHERE READER = ?";
+        return template.query(sql, new BookMapper(),reader);
     }
 
     @Override
@@ -76,6 +81,9 @@ public class DatabaseService implements BookRepository, UserRepository {
         return rowsAffected != 0;
     }
 
+
+
+    // USERS
     @Override
     public UserEntity getUser(String username) {
         return template.queryForObject("SELECT * FROM USERS WHERE username = ?",new UserMapper(),username);

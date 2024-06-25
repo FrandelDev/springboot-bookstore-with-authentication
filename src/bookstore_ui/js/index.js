@@ -1,3 +1,4 @@
+import { authenticate,alterLoginForm } from "./login.js";
 import { getRecentBooks,recentBooks } from "./GetRecentBooks.js";
 import { booksRender } from "./booksRender.js";
 import { goToRecentBooks } from "./goToRecentBooksTab.js";

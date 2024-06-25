@@ -53,7 +53,7 @@ class BookControllerTest {
 
         Book book = data.allBooks.getFirst();
 
-        when(databaseService.insertNewBook(book)).thenReturn(1);
+        when(databaseService.insertNewBook(book,"admin")).thenReturn(1);
 
         ObjectMapper bookAsJson = new ObjectMapper();
         bookAsJson.registerModule(new Jdk8Module());  // Esto permite que ObjectMapper maneje correctamente los Optionals
@@ -64,7 +64,7 @@ class BookControllerTest {
                         .content(bookJson))
                 .andExpect(status().isCreated());
 
-        verify(databaseService, times(1)).insertNewBook(book);
+        verify(databaseService, times(1)).insertNewBook(book,"admin");
     }
 
     /**
@@ -88,8 +88,8 @@ class BookControllerTest {
         jsonAsBook.registerModule(new Jdk8Module());
 
         Book completeBook = jsonAsBook.readValue(responseBody,Book.class);
-        when(databaseService.insertNewBook(completeBook)).thenReturn(1);
-        verify(databaseService, times(1)).insertNewBook(completeBook);
+        when(databaseService.insertNewBook(completeBook,"admin")).thenReturn(1);
+        verify(databaseService, times(1)).insertNewBook(completeBook,"admin");
     }
 
 
@@ -105,12 +105,12 @@ class BookControllerTest {
 
     @Test
     void getAllBuyiedBooks() throws Exception {
-        when(databaseService.getAllBooks()).thenReturn(data.allBooks);
+        when(databaseService.getAllBooks("admin")).thenReturn(data.allBooks);
         mvc.perform(get("/").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$[0].title").value("Programming for Computations - Python"));
-        verify(databaseService).getAllBooks();
+        verify(databaseService).getAllBooks("admin");
     }
 
     @Test

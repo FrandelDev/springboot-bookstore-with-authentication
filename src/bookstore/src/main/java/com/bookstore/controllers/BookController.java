@@ -32,9 +32,9 @@ public class BookController {
      * @param bodyBook This is the book object received in the request body.
      * @return This returns the created book object.
      */
-    @PostMapping("/book")
+    @PostMapping("/book/{reader}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Book setBook(@RequestBody Book bodyBook){
+    public Book setBook(@RequestBody Book bodyBook, @PathVariable String reader){
         StringBuilder purifierId = new StringBuilder(bodyBook.getId());
         if(purifierId.charAt(purifierId.length()-1) == 'X'){
             purifierId.deleteCharAt(purifierId.length()-1);
@@ -57,7 +57,7 @@ public class BookController {
                 .price(Math.round(price*100.0)/100.0)
                 .categories(categories)
                 .build();
-        bookRepository.insertNewBook(book);
+        bookRepository.insertNewBook(book,reader);
         return book;
     }
 
@@ -66,9 +66,9 @@ public class BookController {
         return bookRepository.removeBook(id);
     }
 
-    @GetMapping()
-    public List<Book> getAllBuyiedBooks(){
-        return bookRepository.getAllBooks();
+    @GetMapping("/{reader}")
+    public List<Book> getAllBuyiedBooks(@PathVariable String reader){
+        return bookRepository.getAllBooks(reader);
     }
 
     @GetMapping("/get-categories")

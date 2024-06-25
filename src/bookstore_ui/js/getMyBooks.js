@@ -4,14 +4,15 @@
 let myBooks;
 
 const loader = document.querySelector("#loading");
-const url = "http://localhost:8383/api/bookstore/";
+const url = "http://localhost:8383/api/bookstore/admin";
 async function getMyBooks(){
 
     try {
         const res = await fetch(url, {
             method: "GET",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "Authorization": "Bearer "+ localStorage.getItem("jwt")
             }
         });
 

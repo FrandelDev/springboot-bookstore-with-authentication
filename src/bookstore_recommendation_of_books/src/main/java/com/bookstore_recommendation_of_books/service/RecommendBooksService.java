@@ -143,7 +143,7 @@ public class RecommendBooksService {
     public static List<String> getBooksCategories() throws AuthenticationException {
 
         List<String> allCategories = new ArrayList<>();
-        List<Map<String, Object>> result = getForObject("http://bookstore:8383/api/bookstore", List.class);
+        List<Map<String, Object>> result = getForObject("http://bookstore:8383/api/bookstore/admin", List.class);
 
         if(result != null){
         result.forEach(book -> allCategories.addAll((List<String>)book.get("categories")));
