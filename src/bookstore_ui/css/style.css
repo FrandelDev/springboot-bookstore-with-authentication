@@ -49,8 +49,17 @@
 }
 #navbar #toggle-login-form{
     display: inline-block;
+    text-transform: capitalize;
     color: #fff;
     cursor: pointer;
+}
+#navbar #toggle-login-form{
+    display: flex;
+    gap: 5px;
+}
+#navbar #toggle-login-form p{
+    margin-top: 16px;
+    font-size: small;
 }
 #tabs{
     margin-top: 70px;

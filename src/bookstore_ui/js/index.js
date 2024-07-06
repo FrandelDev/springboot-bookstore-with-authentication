@@ -1,4 +1,4 @@
-import { authenticate,alterLoginForm } from "./login.js";
+import { authenticate,alterLoginForm,detectStoreLoginSession,renderRecommendedBooksAndMyBooks } from "./login.js";
 import { getRecentBooks,recentBooks } from "./GetRecentBooks.js";
 import { booksRender } from "./booksRender.js";
 import { goToRecentBooks } from "./goToRecentBooksTab.js";
@@ -10,6 +10,7 @@ import { addToCart,cart} from "./addToCart.js";
 import { postBooks } from "./postBooks.js";
 import { removeOwnedBooks } from "./removeOwnedBooks.js";
 import { searchBooks } from "./searchBooks.js";
+detectStoreLoginSession();
 const loader = document.querySelector("#loading");
 let instance = null;
 
@@ -32,18 +33,20 @@ class Singleton {
     }
 }
 loader.style.visibility = 'visible';
-await getRecommendedBooks();
-await getRecentBooks();
-await getMyBooks();
-loader.style.visibility = 'hidden';
 
 let allBooks = []
-allBooks.push(...recentBooks);
-allBooks.push(...recommendedBooks);
-allBooks.sort((a,b) => b.pages - a.pages);
 const items = new Singleton();
+
+allBooks.push(...await getRecentBooks());
+
+if(localStorage.getItem('jwt') != null){
+     renderRecommendedBooksAndMyBooks();
+}
+
+loader.style.visibility = 'hidden';
+
+allBooks.sort((a,b) => b.pages - a.pages);
 items.updateData = allBooks;
-await removeOwnedBooks();
 booksRender(items.allData);
 
 

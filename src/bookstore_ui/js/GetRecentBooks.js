@@ -23,7 +23,7 @@ async function getRecentBooks(){
     } catch (error) {
         console.error('Error:', error);
     }
-    
+    return recentBooks;
 }
 
 export {getRecentBooks,recentBooks}

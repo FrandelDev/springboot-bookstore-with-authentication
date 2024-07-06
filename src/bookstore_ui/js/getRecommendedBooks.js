@@ -24,6 +24,7 @@ async function getRecommendedBooks(){
     } catch (error) {
         console.error('Error:', error);
     }
+    return recommendedBooks;
 }
 
 

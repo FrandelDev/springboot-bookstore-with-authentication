@@ -3,13 +3,21 @@ import { booksRender } from "./booksRender.js";
 import { getMyBooks } from "./getMyBooks.js";
 import { removeOwnedBooks } from "./removeOwnedBooks.js";
 
-const tabMyBooks = document.querySelector("#tab-my-books");
 const tabRecent = document.querySelector("#tab-recent");
 const searchbar = document.querySelector("#search");
+const tabs = document.querySelector("#tabs");
 
+function enableBookTab(){
+    tabs.insertAdjacentHTML('beforeend',`
+        <li class="nav-item">
+        <a id="tab-my-books" class="nav-link text-success" href="#">My Books</a>
+        </li>
+        `);
+     document.querySelector("#tab-my-books").addEventListener('click',goToMyBooksTab);
+}
 
-tabMyBooks.addEventListener('click',goToMyBooksTab);
 async function goToMyBooksTab(){
+    const tabMyBooks = document.querySelector('#tab-my-books');
     document.querySelector("#search-tab")?.remove();
     searchbar.value = '';
     tabMyBooks.classList.remove('text-success');
@@ -23,4 +31,4 @@ async function goToMyBooksTab(){
    document.querySelectorAll(".card-body .price").forEach(p => p.remove());
 }
 
-export {goToMyBooksTab}
+export {goToMyBooksTab,enableBookTab}
